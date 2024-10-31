@@ -1,5 +1,5 @@
 const Home = () => (
-  <div className="text-xl text-violet-600 p-4">
+  <div className="p-4 text-xl text-violet-600">
     Welcome to the world of Nextjs
   </div>
 );
