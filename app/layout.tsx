@@ -14,10 +14,13 @@ const spaceGrotesk = localFont({
   weight: "100 200 300 400 500 600 700 800 900",
 });
 
-
 export const metadata: Metadata = {
-  title: "DevFlow",
-  description: "A better version of stack OverFlow",
+  title: "TechTrove",
+  description:
+    "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
+  icons: {
+    icon: "/images/site-logo.svg",
+  },
 };
 
 export default function RootLayout({
