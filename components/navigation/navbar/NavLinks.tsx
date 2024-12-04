@@ -1,12 +1,13 @@
 "use client";
 
-import { sidebarLinks } from "@/constants";
-import React from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
+
 import { SheetClose } from "@/components/ui/sheet";
+import { sidebarLinks } from "@/constants";
+import { cn } from "@/lib/utils";
 
 type NavLinksProps = {
   isMobileNav?: boolean;
@@ -59,7 +60,9 @@ const NavLinks = ({ isMobileNav = false }: NavLinksProps) => {
         );
 
         return isMobileNav ? (
-          <SheetClose asChild key={item.label}>{LinkComponent}</SheetClose>
+          <SheetClose asChild key={item.label}>
+            {LinkComponent}
+          </SheetClose>
         ) : (
           <>{LinkComponent}</>
         );

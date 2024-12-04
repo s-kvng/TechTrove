@@ -1,17 +1,17 @@
-import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
   SheetTitle,
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+
 import NavLinks from "./NavLinks";
 
 const MobileNavigation = () => {
@@ -26,7 +26,10 @@ const MobileNavigation = () => {
           className=" invert-colors sm:hidden"
         />
       </SheetTrigger>
-      <SheetContent side="left" className=" background-light900_dark200 border-none">
+      <SheetContent
+        side="left"
+        className=" background-light900_dark200 border-none"
+      >
         <SheetTitle className="hidden">Navigation</SheetTitle>
         <Link href="/" className="flex items-center gap-1">
           <Image
@@ -44,7 +47,7 @@ const MobileNavigation = () => {
         <div className=" no-scrollbar flex h-[calc(100vh-80px)] flex-col justify-between overflow-y-auto">
           <SheetClose asChild>
             <section className=" flex h-full flex-col gap-6 pt-16">
-              <NavLinks isMobileNav/>
+              <NavLinks isMobileNav />
             </section>
           </SheetClose>
 
@@ -58,8 +61,8 @@ const MobileNavigation = () => {
             </SheetClose>
 
             <SheetClose asChild>
-            <Link href={ROUTES.SIGN_UP}>
-                <Button className=" small-meduim light-border-2 btn-tertiary text-dark400_light900 min-h-[47px] w-full rounded-lg border px-4 py-3 shadow-none">
+              <Link href={ROUTES.SIGN_UP}>
+                <Button className=" light-border-2 btn-tertiary text-dark400_light900 min-h-[47px] w-full rounded-lg border px-4 py-3 shadow-none">
                   Sign up
                 </Button>
               </Link>
