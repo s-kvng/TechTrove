@@ -7,6 +7,7 @@ const ROUTES = {
     JOBS: "/jobs",
     TAGS: (id: string): string => `/tags/${id}`,
     PROFILE: (id: string): string => `/profile/${id}`,
+    QUESTION: (id: string): string => `/question/${id}`,
     ASK_QUESTION: "/ask-question",
 }
 

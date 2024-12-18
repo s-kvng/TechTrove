@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilters from "@/components/filters/HomeFilters";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
@@ -9,12 +10,12 @@ const questions = [
   {
     _id: "1",
     title: "I want to learn react ",
-    description: "How do i go about learning ",
+    description: "Learning react is great",
     tags: [
       { _id: "1", name: "React" },
       { _id: "2", name: "Javascript" },
     ],
-    author: { _id: "1", name: "John doe" },
+    author: { _id: "1", name: "John doe", image: "https://static.vecteezy.com/system/resources/previews/002/002/403/non_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg" },
     upvotes: 10,
     answers: 5,
     views: 100,
@@ -28,7 +29,7 @@ const questions = [
       { _id: "1", name: "js" },
       { _id: "2", name: "Javascript" },
     ],
-    author: { _id: "2", name: "Jane Doe" },
+    author: { _id: "2", name: "Jane Doe", image: "https://static.vecteezy.com/system/resources/previews/002/002/403/non_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg" },
     upvotes: 20,
     answers: 10,
     views: 200,
@@ -54,8 +55,8 @@ const Home = async ({ searchParams }: SearchParams) => {
 
     const matchFilter = filter
       ? question.tags.some((tag) =>
-        tag.name.toLowerCase().includes(filter.toLowerCase())
-      )
+          tag.name.toLowerCase().includes(filter.toLowerCase())
+        )
       : true;
 
     return matchQuery && matchFilter;
@@ -86,7 +87,7 @@ const Home = async ({ searchParams }: SearchParams) => {
 
       <div className=" mt-10 flex w-full flex-col gap-6">
         {filteredQuestions.map((question) => (
-          <p key={question._id}>{question.title}</p>
+          <QuestionCard key={question._id} question={question} />
         ))}
       </div>
     </>
