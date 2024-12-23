@@ -5,6 +5,9 @@ import HomeFilters from "@/components/filters/HomeFilters";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import handleError from "@/lib/handlers/errors";
+import { NotFoundError, ValidationError } from "@/lib/http-errors";
+import { title } from "process";
 
 const questions = [
   {
@@ -41,7 +44,20 @@ interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
+const test = async () =>{
+  try {
+    throw new ValidationError({
+      title: ["Required"],
+      tags: ['"Javascript" is not a valid tag']
+    })
+  } catch (error) {
+    return handleError(error)
+  }
+}
+
 const Home = async ({ searchParams }: SearchParams) => {
+  const results = await test()
+  console.log(results)
   const { query = "", filter = "" } = await searchParams;
 
   const filteredQuestions = questions.filter((question) => {
