@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import {
   DefaultValues,
   FieldValues,
@@ -20,7 +21,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import ROUTES from "@/constants/routes";
 
 // A generic interface
@@ -45,7 +45,7 @@ const AuthForm = <T extends FieldValues>({
 
   // 2. Define a submit handler.
   const handleSubmit: SubmitHandler<T> = async () => {
-    // TODO: Authenticate user 
+    // TODO: Authenticate user
   };
 
   const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
@@ -62,15 +62,15 @@ const AuthForm = <T extends FieldValues>({
             control={form.control}
             name={field as Path<T>}
             render={({ field }) => (
-              <FormItem className="w-full flex flex-col gap-2.5 ">
-                <FormLabel className=" paragraph-meduim text-dark400_light700">
+              <FormItem className="flex w-full flex-col gap-2.5 ">
+                <FormLabel className=" paragraph-medium text-dark400_light700">
                   {
                     field.name === "email"
                       ? "Email Address"
                       : field.name.charAt(0).toUpperCase() +
                         field.name.slice(
                           1
-                        ) /*change first letter to uppercase  */
+                        ) /* change first letter to uppercase  */
                   }
                 </FormLabel>
                 <FormControl>
@@ -78,7 +78,7 @@ const AuthForm = <T extends FieldValues>({
                     required
                     type={field.name === "password" ? "password" : "text"}
                     {...field}
-                    className=" paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 no-focus min-h-12 rounded-1.2 border"
+                    className=" paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 no-focus rounded-1.2 min-h-12 border"
                   />
                 </FormControl>
                 <FormMessage />
@@ -99,7 +99,7 @@ const AuthForm = <T extends FieldValues>({
 
         {formType === "SIGN_IN" ? (
           <p>
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               className=" paragraph-semibold primary-text-gradient "
               href={ROUTES.SIGN_UP}
