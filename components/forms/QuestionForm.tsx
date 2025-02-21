@@ -34,17 +34,25 @@ const QuestionForm = () => {
     },
   });
 
-  const handleCreateQuestion = () => {
+  const handleCreateQuestion = (data : z.infer<typeof AskQuestionSchema>) => {
     // TODO: Create question logic here
+    console.log(data);
     console.log(form.getValues());
     form.reset();
     // Redirect to the dashboard or show a success message.
   };
 
-  const handleTagRemove = (tag : string , field : {value: string[]}) =>{
-    // TODO: Remove selected tag logic here
-    console.log(tag , field);
-  } 
+  const handleTagRemove = (tag: string, field: { value: string[] }) => {
+    const newTags = field.value.filter((t) => t !== tag);
+    form.setValue("tags", newTags);
+
+    if(newTags.length === 0) {
+      form.setError("tags", {
+        type: "manual",
+        message: "At least one tag is required",
+      });
+    }
+  };
 
   const handleInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
@@ -90,10 +98,10 @@ const QuestionForm = () => {
                 <Input
                   required
                   {...field}
-                  className=" paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus rounded-1.5 min-h-[56px] border"
+                  className=" paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] rounded-1.5 border"
                 />
               </FormControl>
-              <FormDescription className=" body-regular text-light-500 mt-2.5">
+              <FormDescription className=" body-regular mt-2.5 text-light-500">
                 Be specific and imagine you&apos;re asking a question to another
                 person
               </FormDescription>
@@ -118,7 +126,7 @@ const QuestionForm = () => {
                   fieldChange={field.onChange}
                 />
               </FormControl>
-              <FormDescription className=" body-regular text-light-500 mt-2.5">
+              <FormDescription className=" body-regular mt-2.5 text-light-500">
                 Introduce the problem and expand on what you&apos;ve put in the
                 title
               </FormDescription>
@@ -139,20 +147,27 @@ const QuestionForm = () => {
                 <div>
                   <Input
                     placeholder="Add Tags..."
-                    required
                     onKeyDown={(e) => handleInputKeyDown(e, field)}
-                    className=" paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus rounded-1.5 min-h-[56px] border"
+                    className=" paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] rounded-1.5 border"
                   />
                   {field.value.length > 0 && (
                     <div className="flex-start mt-2.5 flex-wrap gap-2.5 ">
                       {field.value.map((tag: string) => (
-                        <TagCard key={tag} _id={tag} name={tag} compact remove isButton handleRemove={()=> handleTagRemove(tag, field)}/>
+                        <TagCard
+                          key={tag}
+                          _id={tag}
+                          name={tag}
+                          compact
+                          remove
+                          isButton
+                          handleRemove={() => handleTagRemove(tag, field)}
+                        />
                       ))}
                     </div>
                   )}
                 </div>
               </FormControl>
-              <FormDescription className=" body-regular text-light-500 mt-2.5">
+              <FormDescription className=" body-regular mt-2.5 text-light-500">
                 Add up to three tags to describe what your question is about.
                 You need to press enter to add a tag
               </FormDescription>
@@ -163,8 +178,7 @@ const QuestionForm = () => {
 
         <div className="mt-16 flex justify-end">
           <Button
-            type="button"
-            className="primary-gradient !text-light-900 w-fit"
+            className="primary-gradient w-fit !text-light-900"
           >
             Ask Question
           </Button>

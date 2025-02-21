@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -24,16 +25,28 @@ const TagCard = ({
   compact,
   remove,
   isButton,
+  handleRemove,
 }: TagCardProps) => {
   const iconClass = getDeviconClassName(name);
 
   const Content = (
     <>
-      <Badge className=" subtle-medium text-light400_light500 background-light800_dark300 rounded-md border-none px-2 py-4 uppercase  ">
-        <span className=" flex-center space-x-3">
+      <Badge className=" subtle-medium text-light400_light500 background-light800_dark300 rounded-md border-none px-2 py-4 uppercase">
+        <span className=" flex-center mr-1 space-x-3">
           <i className={`${iconClass} text-sm`}></i>
           <span>{name}</span>
         </span>
+
+        {remove && (
+          <Image
+            src="/icons/close.svg"
+            alt="close"
+            width={12}
+            height={12}
+            className="cursor-pointer object-contain invert-0 dark:invert"
+            onClick={handleRemove}
+          />
+        )}
       </Badge>
 
       {showCount && (
@@ -44,7 +57,7 @@ const TagCard = ({
 
   if (compact) {
     return isButton ? (
-      <button className="flex items-center justify-between gap-2">
+      <button type="button" className="flex items-center justify-between gap-2">
         {Content}
       </button>
     ) : (

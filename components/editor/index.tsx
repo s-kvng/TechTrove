@@ -32,7 +32,7 @@ import "./dark-editor.css";
 import { basicDark } from "cm6-theme-basic-dark";
 import { useTheme } from "next-themes";
 import type { ForwardedRef } from "react";
-import '@mdxeditor/editor/style.css'
+import "@mdxeditor/editor/style.css";
 
 interface EditorProps {
   editorRef: ForwardedRef<MDXEditorMethods> | null;
@@ -54,32 +54,31 @@ const Editor = ({ value, fieldChange, editorRef, ...props }: EditorProps) => {
         markdownShortcutPlugin(),
         tablePlugin(),
         imagePlugin(),
-        codeBlockPlugin({ defaultCodeBlockLanguage: ""}),
+        codeBlockPlugin({ defaultCodeBlockLanguage: "" }),
         codeMirrorPlugin({
-            codeBlockLanguages: {
-                css: "css",
-                js: "javascript",
-                txt: "txt",
-                json: "json",
-                graphql: "graphql",
-                md: "markdown",
-                saas : "saas",
-                bash : "bash",
-                ts : "typescript",
-                html: "html",
-                tsx: "Typescript (React)",
-                jsx : "Javascript (React)",
-                py: "python",
-                rb: "ruby",
-                php: "php",
-                c: "c",
-                "": "unspecified"
-            },
-            autoLoadLanguageSupport: true,
-            codeMirrorExtensions: theme,
-
+          codeBlockLanguages: {
+            css: "css",
+            js: "javascript",
+            txt: "txt",
+            json: "json",
+            graphql: "graphql",
+            md: "markdown",
+            saas: "saas",
+            bash: "bash",
+            ts: "typescript",
+            html: "html",
+            tsx: "Typescript (React)",
+            jsx: "Javascript (React)",
+            py: "python",
+            rb: "ruby",
+            php: "php",
+            c: "c",
+            "": "unspecified",
+          },
+          autoLoadLanguageSupport: true,
+          codeMirrorExtensions: theme,
         }),
-        diffSourcePlugin({ viewMode: "rich-text", diffMarkdown: "" }),  
+        diffSourcePlugin({ viewMode: "rich-text", diffMarkdown: "" }),
         quotePlugin(),
         thematicBreakPlugin(),
         markdownShortcutPlugin(),
@@ -98,18 +97,18 @@ const Editor = ({ value, fieldChange, editorRef, ...props }: EditorProps) => {
                       <Separator />
 
                       <BoldItalicUnderlineToggles />
-                      <Separator/>
+                      <Separator />
 
-                      <ListsToggle/>
-                      <Separator/>
+                      <ListsToggle />
+                      <Separator />
 
-                      <CreateLink/>
-                      <InsertImage/>
-                      <Separator/>
+                      <CreateLink />
+                      <InsertImage />
+                      <Separator />
 
-                      <InsertTable/>
-                      <InsertThematicBreak/>
-                      <InsertCodeBlock/>
+                      <InsertTable />
+                      <InsertThematicBreak />
+                      <InsertCodeBlock />
                     </>
                   ),
                 },
@@ -121,7 +120,7 @@ const Editor = ({ value, fieldChange, editorRef, ...props }: EditorProps) => {
       {...props}
       markdown={value}
       onChange={fieldChange}
-      className="background-light800_dark200 light-border-2 markdown-editor dark-editor w-full border"
+      className="background-light800_dark200 light-border-2 markdown-editor dark-editor grid w-full border"
       ref={editorRef}
     />
   );
