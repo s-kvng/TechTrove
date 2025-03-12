@@ -22,5 +22,6 @@ const UserSchema = new Schema({
     reputation : { type : Number , default : 0 },
 }, {timestamps: true});
 
+// if the model is already created, use it. Otherwise create a new model
 const User =models?.user || model<IUser>("User", UserSchema);
 export default User;
