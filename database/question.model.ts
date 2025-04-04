@@ -12,7 +12,7 @@ export interface IQuestion {
     views : number ;
 }
 
-const QuestionSchema = new Schema({
+const QuestionSchema = new Schema<IQuestion>({
     author : { type : Schema.Types.ObjectId , ref : 'User' , required: true },
     title : { type : String , required: true },
     content : { type : String , required: true },
@@ -22,6 +22,7 @@ const QuestionSchema = new Schema({
     downvotes : [{ type : Number , default: 0 }],
     views : { type : Number , default: 0 },
 }, {timestamps: true})
+
 // if the model is already created, use it. Otherwise create a new model
 const Question = models?.Question || model<IQuestion>('Question', QuestionSchema);
 export default Question;

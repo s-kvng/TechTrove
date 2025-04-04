@@ -8,7 +8,7 @@ export interface IAnswer {
     downvotes: number;
 }
 
-const AnswerSchema = new Schema({
+const AnswerSchema = new Schema<IAnswer>({
     author : { type : Schema.Types.ObjectId , ref : 'User' , required: true },
     question : { type : Schema.Types.ObjectId , ref : 'Question' , required: true },
     content : { type : String , required: true },
