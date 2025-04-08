@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import Theme from "./Theme-toggler";
 import MobileNavigation from "./MobileNavigation";
+import Theme from "./Theme-toggler";
 
 const Navbar = () => {
   return (
@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className="flex-between gap-5">
         <Theme />
 
-        <MobileNavigation/>
+        <MobileNavigation />
       </div>
     </nav>
   );
